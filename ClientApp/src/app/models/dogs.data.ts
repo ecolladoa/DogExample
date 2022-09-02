@@ -1,13 +1,13 @@
 export class Dog {
   DogID: number;
   Name: string;
-  Breed: string;
+  BreedName: string;
   BirthDate: Date;
 
   constructor() {
     this.DogID = 0;
     this.Name = '';
-    this.Breed = '';
+    this.BreedName = '';
     this.BirthDate = new Date(0);
   }
 }

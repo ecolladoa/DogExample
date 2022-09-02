@@ -1,8 +1,20 @@
 <h1>Dogs</h1>
-<table>
-  <tr *ngFor="let dog of list" class="table">
-    <td>{{dog.DogID}}</td>
-    <td>{{dog.Name}}</td>
-    <td>{{dog.BirthDate}}</td>
-  </tr>
+<p *ngIf="!list"><em>Loading...</em></p>
+<table id="tbl-dogs" class="table-hover table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Breed</th>
+      <th scope="col">Birth Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dog of list" class="table">
+      <td scope="row">{{dog.DogID}}</td>
+      <td scope="row">{{dog.Name}}</td>
+      <td scope="row">{{dog.BreedName}}</td>
+      <td scope="row">{{dog.BirthDate | date : 'shortDate'}}</td>
+    </tr>
+  </tbody>
 </table>

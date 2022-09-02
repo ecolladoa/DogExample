@@ -1,6 +1,7 @@
 ﻿using DogExample.Models;
 using DogExample.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DogExample.Controllers
 {
@@ -18,9 +19,10 @@ namespace DogExample.Controllers
         [HttpGet("GetList")]
         public ActionResult<DogViewModel[]> GetList()
         {
-            var result = (from dog in _context.Dogs
-                          orderby dog.BirthDate ascending, dog.DogNavigation.Name ascending
-                          select new DogViewModel()
+            var result = _context.Dogs
+                        .OrderBy(dog => dog.DogNavigation.Name)
+                        .ThenBy(dog => dog.BirthDate)
+                        .Select(dog => new DogViewModel
                           {
                               DogID = dog.DogId,
                               Name = dog.Name,
